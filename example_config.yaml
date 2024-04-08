@@ -1,0 +1,30 @@
+seed_everything: 6839323
+model:
+  class_path: models.swin_transformer.SwinTransformer
+  init_args:
+    num_classes: 102
+    learning_rate: 0.001
+data:
+  class_path: data_modules.flowers102.Flowers102DataModule
+  init_args:
+    data_dir: './data'
+    batch_size: 5
+    num_workers: 7
+trainer:
+  logger:
+    class_path: "lightning.pytorch.loggers.TensorBoardLogger"
+    init_args:
+      save_dir: "."
+      name: "runs"
+      default_hp_metric: false
+  
+  callbacks:
+    - class_path: "lightning.pytorch.callbacks.ModelSummary"
+      init_args:
+        max_depth: 2
+    - class_path: "lightning.pytorch.callbacks.ModelCheckpoint"
+      init_args:
+        filename: "best"
+        monitor: "val_loss"
+        save_last: true
+        save_top_k: 1

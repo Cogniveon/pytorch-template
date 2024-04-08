@@ -1,6 +1,5 @@
-mlruns/
-mlartifacts/
-model_summary.txt
+runs/
+data/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
