@@ -1,0 +1,8 @@
+tensorboard==2.16.2
+gradio==4.25.0
+isort==5.13.2
+lightning[pytorch-extra]==2.2.1
+numpy==1.26.4
+pandas==2.2.1
+torch==2.2.2
+torchvision==0.17.2
