@@ -1,5 +1,4 @@
 import lightning.pytorch as pl
-
 from lightning.pytorch.cli import LightningCLI
 
 if __name__ == "__main__":

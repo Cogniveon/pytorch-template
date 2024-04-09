@@ -11,20 +11,28 @@ data:
     batch_size: 5
     num_workers: 7
 trainer:
+  limit_train_batches: 0.25
+  limit_val_batches: 0.25
+  limit_test_batches: 0.25
   logger:
     class_path: "lightning.pytorch.loggers.TensorBoardLogger"
     init_args:
       save_dir: "."
       name: "runs"
       default_hp_metric: false
-  
   callbacks:
+    - class_path: "lightning.pytorch.callbacks.LearningRateMonitor"
+      init_args:
+        logging_interval: "step"
+    - class_path: "lightning.pytorch.callbacks.EarlyStopping"
+      init_args:
+        monitor: "val/loss"
     - class_path: "lightning.pytorch.callbacks.ModelSummary"
       init_args:
         max_depth: 2
     - class_path: "lightning.pytorch.callbacks.ModelCheckpoint"
       init_args:
         filename: "best"
-        monitor: "val_loss"
+        monitor: "val/loss"
         save_last: true
         save_top_k: 1
